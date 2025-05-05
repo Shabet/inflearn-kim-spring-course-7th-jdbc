@@ -47,30 +47,24 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
 
     @Override
     public Item save(Item item) {
-        String sql = """
-                insert into item(item_name, price, quantity)
-                values (:itemname, :price, :quantity)
-        """;
+        String sql = "insert into item(item_name, price, quantity) values (:itemName, :price, :quantity)";
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         template.update(sql, param, keyHolder);
 
-        long key = keyHolder.getKey().longValue();
+        Long key = keyHolder.getKey().longValue();
         item.setId(key);
         return item;
     }
 
     @Override
     public void update(Long itemId, ItemUpdateDto updateParam) {
-        String sql = """
-            update item set item_name = :itemName, price = :price, quantity = :quantity
-             where id = :id
-        """;
+        String sql = "update item set item_name = :itemName, price = :price, quantity = :quantity where id = :id";
 
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("itemname", updateParam.getItemName())
+                .addValue("itemName", updateParam.getItemName())
                 .addValue("price", updateParam.getPrice())
                 .addValue("quantity", updateParam.getQuantity())
                 .addValue("id", itemId); //이 부분이 별도로 필요하다.
