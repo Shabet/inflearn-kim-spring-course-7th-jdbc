@@ -12,20 +12,18 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
 @Service
 @Repository
 @Transactional
-public class JpaItemRepository implements ItemRepository {
+public class JpaItemRepositoryV1 implements ItemRepository {
 
     private final EntityManager em;
 
-    public JpaItemRepository(EntityManager em) {
+    public JpaItemRepositoryV1(EntityManager em) {
         this.em = em;
     }
 
