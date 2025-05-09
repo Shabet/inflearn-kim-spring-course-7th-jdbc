@@ -11,8 +11,9 @@ java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
-
 }
+
+//ext["hibernate.version"] = "5.6.5.Final" //Spring 2.x 배전에서...
 
 configurations {
 	compileOnly {
